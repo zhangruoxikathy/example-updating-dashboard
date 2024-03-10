@@ -96,7 +96,7 @@ html_theme_options = {
         "colab_url": "",
     },
     "path_to_docs": "docs",
-    "repository_url": "https://github.com/zhangruoxikathy/example-updating-dashboard",
+    "repository_url": "https://zhangruoxikathy.github.io/example-updating-dashboard/",
     "repository_branch": "master",
     "extra_footer": "",
     "home_page_in_toc": True,
