@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Kathy's Blank Project's documentation!
+Welcome to Kathy's Blank Project's documentation!!!!!!!!!!
 ============================================
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
@@ -20,8 +20,6 @@ sunt in culpa qui officia deserunt mollit anim id est laborum.
    :caption: Contents:
 
    myst_markdown_demos.md
-   ./_notebook_build/_01_example_notebook.ipynb
-   ./_notebook_build/_02_pca_index_visualizations.ipynb
    ./_notebook_build/_03_pca_index_dashboard.ipynb
    api.rst
 
