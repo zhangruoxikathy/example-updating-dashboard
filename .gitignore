@@ -15,8 +15,7 @@ Exclude data folder
 /data/*
 !/data/manual/
 temp*.csv
-*/_build/
-*/_notebook_build/
+
 /output/*
 
 ###################
