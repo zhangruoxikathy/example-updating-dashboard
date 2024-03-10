@@ -74,72 +74,72 @@ def task_pull_fred():
     }
 
 
-def task_convert_notebooks_to_scripts():
-    """Preps the notebooks for presentation format.
-    Execute notebooks with summary stats and plots and remove metadata.
-    """
-    build_dir = Path(OUTPUT_DIR)
-    build_dir.mkdir(parents=True, exist_ok=True)
+# def task_convert_notebooks_to_scripts():
+#     """Preps the notebooks for presentation format.
+#     Execute notebooks with summary stats and plots and remove metadata.
+#     """
+#     build_dir = Path(OUTPUT_DIR)
+#     build_dir.mkdir(parents=True, exist_ok=True)
 
-    notebooks = [
-        "01_example_notebook.ipynb",
-        "02_pca_index_visualizations.ipynb",
-    ]
-    file_dep = [Path("./src") / file for file in notebooks]
-    stems = [notebook.split(".")[0] for notebook in notebooks]
-    targets = [build_dir / f"_{stem}.py" for stem in stems]
+#     notebooks = [
+#         "01_example_notebook.ipynb",
+#         "02_pca_index_visualizations.ipynb",
+#     ]
+#     file_dep = [Path("./src") / file for file in notebooks]
+#     stems = [notebook.split(".")[0] for notebook in notebooks]
+#     targets = [build_dir / f"_{stem}.py" for stem in stems]
 
-    actions = [
-        # *[jupyter_execute_notebook(notebook) for notebook in notebooks_to_run],
-        # *[jupyter_to_html(notebook) for notebook in notebooks_to_run],
-        *[jupyter_clear_output(notebook) for notebook in stems],
-        *[jupyter_to_python(notebook, build_dir) for notebook in stems],
-    ]
-    return {
-        "actions": actions,
-        "targets": targets,
-        "task_dep": [],
-        "file_dep": file_dep,
-        "clean": True,
-    }
+#     actions = [
+#         # *[jupyter_execute_notebook(notebook) for notebook in notebooks_to_run],
+#         # *[jupyter_to_html(notebook) for notebook in notebooks_to_run],
+#         *[jupyter_clear_output(notebook) for notebook in stems],
+#         *[jupyter_to_python(notebook, build_dir) for notebook in stems],
+#     ]
+#     return {
+#         "actions": actions,
+#         "targets": targets,
+#         "task_dep": [],
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
 
 
-def task_run_notebooks():
-    """Preps the notebooks for presentation format.
-    Execute notebooks with summary stats and plots and remove metadata.
-    """
-    notebooks = [
-        "01_example_notebook.ipynb",
-        "02_pca_index_visualizations.ipynb",
-    ]
-    stems = [notebook.split(".")[0] for notebook in notebooks]
+# def task_run_notebooks():
+#     """Preps the notebooks for presentation format.
+#     Execute notebooks with summary stats and plots and remove metadata.
+#     """
+#     notebooks = [
+#         "01_example_notebook.ipynb",
+#         "02_pca_index_visualizations.ipynb",
+#     ]
+#     stems = [notebook.split(".")[0] for notebook in notebooks]
 
-    file_dep = [
-        # 'load_other_data.py',
-        *[Path(OUTPUT_DIR) / f"_{stem}.py" for stem in stems],
-    ]
+#     file_dep = [
+#         # 'load_other_data.py',
+#         *[Path(OUTPUT_DIR) / f"_{stem}.py" for stem in stems],
+#     ]
 
-    targets = [
-        ## 01_example_notebook.ipynb output
-        OUTPUT_DIR / "sine_graph.png",
-        ## Notebooks converted to HTML
-        *[OUTPUT_DIR / f"{stem}.html" for stem in stems],
-    ]
+#     targets = [
+#         ## 01_example_notebook.ipynb output
+#         OUTPUT_DIR / "sine_graph.png",
+#         ## Notebooks converted to HTML
+#         *[OUTPUT_DIR / f"{stem}.html" for stem in stems],
+#     ]
 
-    actions = [
-        *[jupyter_execute_notebook(notebook) for notebook in stems],
-        *[jupyter_to_html(notebook) for notebook in stems],
-        *[copy_notebook_to_folder(notebook, Path("./src"), "./docs/_notebook_build/") for notebook in stems],
-        *[jupyter_clear_output(notebook) for notebook in stems],
-        # *[jupyter_to_python(notebook, build_dir) for notebook in notebooks_to_run],
-    ]
-    return {
-        "actions": actions,
-        "targets": targets,
-        "task_dep": [],
-        "file_dep": file_dep,
-        "clean": True,
-    }
+#     actions = [
+#         *[jupyter_execute_notebook(notebook) for notebook in stems],
+#         *[jupyter_to_html(notebook) for notebook in stems],
+#         *[copy_notebook_to_folder(notebook, Path("./src"), "./docs/_notebook_build/") for notebook in stems],
+#         *[jupyter_clear_output(notebook) for notebook in stems],
+#         # *[jupyter_to_python(notebook, build_dir) for notebook in notebooks_to_run],
+#     ]
+#     return {
+#         "actions": actions,
+#         "targets": targets,
+#         "task_dep": [],
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
 
 
 
@@ -186,8 +186,8 @@ def task_compile_sphinx_docs():
         "./docs/index.rst",
         "./docs/myst_markdown_demos.md",
         "./docs/api.rst",
-        "./src/01_example_notebook.ipynb",
-        "./src/02_pca_index_visualizations.ipynb",
+        #"./src/01_example_notebook.ipynb",
+        #"./src/02_pca_index_visualizations.ipynb",
         "./src/03_pca_index_dashboard.ipynb",
     ]
     targets = [
@@ -200,7 +200,7 @@ def task_compile_sphinx_docs():
         "actions": ["sphinx-build -M html ./docs/ ./docs/_build"],
         "targets": targets,
         "file_dep": file_dep,
-        "task_dep": ["run_notebooks"],
+        #"task_dep": ["run_notebooks"],
         "clean": True,
     }
 
